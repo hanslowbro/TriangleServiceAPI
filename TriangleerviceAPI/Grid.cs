@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace TriangleServiceAPI
@@ -101,12 +102,13 @@ namespace TriangleServiceAPI
         public string CalculateTriangleRowAndColumn(Point point1, Point point2, Point point3)
         {
             List<Point> points = new List<Point>() { point1 , point2, point3};
-
+            ValidatePoints(points);
             points = new List<Point>(points.OrderBy(pt => pt.X + pt.Y)).ToList();
             int startingX = points.First().X;
             int startingY = points.First().Y;
 
             int row = (startingX / SquareSize);
+            //Only through F
             string letters = "ABCDEF";
             string letterPosition = letters[row].ToString();
 
@@ -122,6 +124,29 @@ namespace TriangleServiceAPI
             }
 
             return letterPosition += numberPosition;
+        }
+
+        public void ValidatePoints(List<Point> points)
+        {
+            //need 3 sides for triangle
+            List<Line> sides = new List<Line>();
+            sides.Add(new Line(points[0], points[1]));
+            sides.Add(new Line(points[0], points[2]));
+            sides.Add(new Line(points[1], points[2]));
+            Line hypotenuse = null;
+
+            foreach (var side in sides)
+            {
+                if (side.Length != SquareSize)
+                {
+                    if (hypotenuse == null)
+                        hypotenuse = side;
+                    else
+                    {
+                        throw new Exception("At least one side is longer than " + SquareSize);
+                    }
+                }
+            }
         }
     }
 }

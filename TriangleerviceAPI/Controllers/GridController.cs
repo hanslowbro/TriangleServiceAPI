@@ -9,8 +9,6 @@ using Microsoft.VisualBasic;
 
 namespace TriangleServiceAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class GridController : ControllerBase
     {
         [HttpGet("api/points")]
