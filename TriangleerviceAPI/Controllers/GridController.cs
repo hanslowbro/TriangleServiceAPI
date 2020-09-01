@@ -27,11 +27,18 @@ namespace TriangleServiceAPI.Controllers
         [HttpGet("api/location")]
         public JsonResult GetTrianglePoints([FromQuery] string location)
         {
-            Grid grid = new Grid(Constants.GRID_SIZE, Constants.GRID_SIZE, Constants.SQUARE_SIZE);
+            if (location != null)
+            {
+                Grid grid = new Grid(Constants.GRID_SIZE, Constants.GRID_SIZE, Constants.SQUARE_SIZE);
 
-            Triangle triangle = grid.GetTriangle(location);
+                Triangle triangle = grid.GetTriangle(location);
 
-            return new JsonResult(triangle);
+                return new JsonResult(triangle);
+            }
+            else
+            {
+                throw new Exception("Location is null");
+            }
         }
     }
 }

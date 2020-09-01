@@ -126,27 +126,28 @@ namespace TriangleServiceAPI
             return letterPosition += numberPosition;
         }
 
-        public void ValidatePoints(List<Point> points)
-        {
-            //need 3 sides for triangle
-            List<Line> sides = new List<Line>();
-            sides.Add(new Line(points[0], points[1]));
-            sides.Add(new Line(points[0], points[2]));
-            sides.Add(new Line(points[1], points[2]));
-            Line hypotenuse = null;
+        //TODO: Better logic to validate this. Also create some tests. 
+        //public void ValidatePoints(List<Point> points)
+        //{
+        //    //need 3 sides for triangle
+        //    List<Line> sides = new List<Line>();
+        //    sides.Add(new Line(points[0], points[1]));
+        //    sides.Add(new Line(points[0], points[2]));
+        //    sides.Add(new Line(points[1], points[2]));
+        //    Line hypotenuse = null;
 
-            foreach (var side in sides)
-            {
-                if (side.Length != SquareSize)
-                {
-                    if (hypotenuse == null)
-                        hypotenuse = side;
-                    else
-                    {
-                        throw new Exception("At least one side is longer than " + SquareSize);
-                    }
-                }
-            }
-        }
+        //    foreach (var side in sides)
+        //    {
+        //        if (side.Length != SquareSize)
+        //        {
+        //            if (hypotenuse == null)
+        //                hypotenuse = side;
+        //            else
+        //            {
+        //                throw new Exception("At least one side is longer than " + SquareSize);
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
