@@ -102,7 +102,7 @@ namespace TriangleServiceAPI
         public string CalculateTriangleRowAndColumn(Point point1, Point point2, Point point3)
         {
             List<Point> points = new List<Point>() { point1 , point2, point3};
-            ValidatePoints(points);
+            //ValidatePoints(points);
             points = new List<Point>(points.OrderBy(pt => pt.X + pt.Y)).ToList();
             int startingX = points.First().X;
             int startingY = points.First().Y;
